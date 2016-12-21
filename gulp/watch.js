@@ -15,3 +15,7 @@ gulp.task('watch-assets', function () {
   return gulp.watch([config.paths.assets + 'images/**',
     config.paths.assets + 'javascripts/**'], {cwd: './'}, ['copy-assets'])
 })
+
+gulp.task('watch-subapp-sass', function(){
+  return gulp.watch('app/views/**/*.scss', {cwd: './'}, ['subapp-sass'])
+})
