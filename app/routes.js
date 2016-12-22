@@ -47,6 +47,7 @@ getSubAppData = function(path) {
 		title: title,
 		body_class: title.replace(/\s+/g, '-').toLowerCase(),
 		route: {
+			root: appRouteString,
 			page: appRouteString + ':page'
 		}
   }
@@ -102,6 +103,12 @@ glob.sync(__dirname + '/views/' + appsDir +'/**/*-routes.js').forEach(function(c
 	  
 		next();
 		
+	});
+	
+	// if the user hits the root of the subapp's views, then redirect to the
+	// index page
+	router.all(appData.route.root, function(req,res,next){
+		return res.redirect('index');
 	});
 	
 });
