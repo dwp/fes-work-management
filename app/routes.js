@@ -54,11 +54,6 @@ getSubAppData = function(path) {
 	
 }
 
-// Route index page
-router.get('/', function (req, res) {
-  return res.render('index')
-})
-
 /**
  * this route is a fudge to be able to serve the assets without editing the 
  * gov.uk prototying kit's server.js file to specifically serve the usuaul way
@@ -112,5 +107,11 @@ glob.sync(__dirname + '/views/' + appsDir +'/**/*-routes.js').forEach(function(c
 	});
 	
 });
+
+// Route index page
+router.get('/', function (req, res) {
+  res.locals.apps = subApps;
+  return res.render('index')
+})
 
 module.exports = router
