@@ -14,9 +14,9 @@ let subApps = new Array();
  * @param  {string}       path the system path of the routes file passed in
  * @return {object}            data derrived from the routes file and it's path
  */
-getSubAppData = function(path) {
+getSubAppData = function(currentPath) {
   
-	var splitPathArray = path.split('/');
+	var splitPathArray = currentPath.split('/');
 	
 	// this takes the file path and returns the relative path to it 
 	// within the prototyping kit 
@@ -40,16 +40,39 @@ getSubAppData = function(path) {
 	
 	// returns and object of data derrived from the subapp path that was passed in
   return {
-    routesFilePathRel: computedPath,
-    appDirName: appDirName,
-		appAbsolutePath: appAbsolutePath,
-		appRouteString: appRouteString,
+		
+		// a formatted string for the title of the subapp
 		title: title,
+		
+		// the directory name for the subapp
+    appDirName: appDirName,
+		
+		// a string used to give the app a unique body class
 		body_class: title.replace(/\s+/g, '-').toLowerCase(),
+		
+		// url paths constructed from the passed in subapp path
+		urlPaths: {
+			appRoot: appAbsolutePath,
+			assetsPath: appAbsolutePath + 'assets/',
+			scriptsPath: appAbsolutePath + 'assets/javascripts/',
+			stylesPath: appAbsolutePath + 'assets/sass/',
+			imagesPath: appAbsolutePath + 'assets/images/'
+		},
+		
+		// file paths, to be used primarily by nunjucks for rendering layouts,
+		// accessing routes, etc. 
+		filePaths: {
+			routesFile: computedPath,
+			layoutsDir: path.dirname(computedPath) + '/layouts/',
+			coreLayoutsDirPathRel: path.relative(path.dirname(currentPath + '/layouts/'), __dirname + '/views/layouts/')
+		},
+		
+		// route strings
 		route: {
 			root: appRouteString,
 			page: appRouteString + ':page'
 		}
+		
   }
 	
 }
@@ -88,11 +111,12 @@ glob.sync(__dirname + '/views/' + appsDir +'/**/*-routes.js').forEach(function(c
 	// no matter what the app, always add the following context data about the 
 	// apps and the app currently being viewed
 	router.all([
-		appData.appAbsolutePath + '*', 
-		appData.appAbsolutePath + 'views/*'
+		appData.urlPaths.appRoot + '*', 
+		appData.urlPaths.appRoot + 'views/*'
 	], function(req, res, next){
 		
 	  _.merge(res.locals, {
+			session: req.session,
 	    currentApp: appData
 	  });
 	  

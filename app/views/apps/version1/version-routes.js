@@ -6,7 +6,6 @@ module.exports = function(router, config) {
     
     var postData = req.body || {};
 		var currentPage = req.params.page;
-		console.log(currentPage);
     
     next();
   
