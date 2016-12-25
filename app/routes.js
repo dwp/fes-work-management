@@ -7,6 +7,7 @@ const app = express()
 const glob = require('globby')
 const _ = require('lodash')
 const appsDir = 'apps'
+const baseSubAppPath = __dirname + '/views/'
 const sentenceCase = require('sentence-case')
 let subApps = new Array()
 
@@ -65,7 +66,9 @@ let getSubAppData = function(currentPath) {
 		// accessing routes, etc. 
 		filePaths: {
 			routesFile: computedPath,
+			subAppDir: path.dirname(computedPath),
 			layoutsDir: path.dirname(computedPath) + '/layouts/',
+			includesDir: path.dirname(computedPath) + '/includes/',
 			coreLayoutsDirPathRel: path.relative(path.dirname(currentPath + '/layouts/'), __dirname + '/views/layouts/')
 		},
 		
@@ -74,6 +77,7 @@ let getSubAppData = function(currentPath) {
 			root: appRouteString,
 			page: appRouteString + ':page'
 		}
+		
 		
   }
 	
@@ -88,7 +92,7 @@ router.get('/apps/:subapp*/assets/:type/:file*', function(req, res){
 	let requestedFile = __dirname + '/views/apps/' + req.params.subapp + '/assets/' + req.params.type + '/' + req.params.file
   // Don't let them peek at /etc/passwd
   if (req.params.file.indexOf('..') === -1) {
-    return res.sendfile(requestedFile)
+    return res.sendFile(requestedFile)
   } else {
     res.status = 404
     return res.send('Not Found')
@@ -98,10 +102,13 @@ router.get('/apps/:subapp*/assets/:type/:file*', function(req, res){
 /**
  * loop over the sub 'routes' files and add them to the overall router
  */
-glob.sync(__dirname + '/views/' + appsDir +'/**/*-routes.js').forEach(function(currentPath){
+glob.sync(baseSubAppPath + appsDir + '/**/*-routes.js').forEach(function(currentPath){
   
 	// get some data based on the current subapp path
 	let appData = getSubAppData(currentPath)
+	
+	// add specific subApp config (can override some of app/config)
+	appData.config = require(baseSubAppPath + appData.filePaths.subAppDir + "/config.js")
 	
 	// push that to a collection of all the subapps
 	subApps.push(appData)
@@ -118,8 +125,9 @@ glob.sync(__dirname + '/views/' + appsDir +'/**/*-routes.js').forEach(function(c
 		
 	  _.merge(res.locals, {
 			session: req.session,
-	    currentApp: appData
-	  });
+	    currentApp: _.omit(appData, ['config.overrides']),
+			postData: (req.body ? req.body : false)
+	  }, appData.config.overrides);
 	  
 		next();
 		

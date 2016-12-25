@@ -1,0 +1,11 @@
+{
+  title: "FES Prototype"
+  group: "DWP"
+  paths: [
+    "~/Sites/govuk/DWP/fes/prototype"
+  ]
+	settings:
+	  core:
+	    "file-types":
+        'html': 'text.html.nunjucks'
+}

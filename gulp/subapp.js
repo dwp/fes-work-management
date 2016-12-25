@@ -19,7 +19,9 @@ gulp.task('subapp-sass', function () {
   .pipe(sass({outputStyle: 'expanded',
     includePaths: ['govuk_modules/govuk_frontend_toolkit/stylesheets',
       'govuk_modules/govuk_template/assets/stylesheets',
-      'govuk_modules/govuk-elements-sass/']}).on('error', sass.logError))
+      'govuk_modules/govuk-elements-sass/',
+      'app/assets/sass/'
+    ]}).on('error', sass.logError))
   .pipe(sourcemaps.init())
   .pipe(sourcemaps.write())
 	// this writes the file to the same location as the src file.
