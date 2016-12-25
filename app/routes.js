@@ -125,7 +125,7 @@ glob.sync(baseSubAppPath + appsDir + '/**/*-routes.js').forEach(function(current
 		
 	  _.merge(res.locals, {
 			session: req.session,
-	    currentApp: _.omit(appData, ['config.overrides']),
+	    currentApp: appData,
 			postData: (req.body ? req.body : false)
 	  }, appData.config.overrides);
 	  

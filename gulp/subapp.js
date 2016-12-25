@@ -40,7 +40,6 @@ gulp.task('watch-subapp-sass', function(){
 gulp.task('subapp', function(){
 	runSequence([
 		'subapp-sass',
-		'watch-subapp-sass',
-		'default'
+		'watch-subapp-sass'
 	])
 })

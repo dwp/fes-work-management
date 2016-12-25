@@ -9,7 +9,7 @@
 		<p class="lede">Details of this prototype.</p>
 		
 		{% block description %}
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<p>The contents of <span class="mono-inline">{% raw %}{% block descrition %}{% endblock %}{% endraw %}</span> will be outputted here</p>
 		{% endblock %}
 		
 		<h3 class="heading-medium">Technical details</h3>
@@ -17,6 +17,9 @@
 		<ul class="list-bullet list-block">
 			<li>Node/Express routes file location: <span class="mono-inline">{{ currentApp.filePaths.routesFile }}</span></li>
 			<li>Layouts are located: <span class="mono-inline">{{ currentApp.filePaths.layoutsDir }}</span></li>
+			<li>'Sub application' specific data can be accessed in the templates with <span class="mono-inline">{% raw %}{{ currentApp }}{% endraw %}</span></li>
+			<li>Session data can be accessed in the templates with <span class="mono-inline">{% raw %}{{ session }}{% endraw %}</span></li>
+			<li>'Post' data can be accessed in the templates with <span class="mono-inline">{% raw %}{{ postData }}{% endraw %}</span></li>
 		</ul>
 		
 	</main>
