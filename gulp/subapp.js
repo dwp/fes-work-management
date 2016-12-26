@@ -10,7 +10,7 @@
 var gulp = require('gulp')
 var sass = require('gulp-sass')
 var sourcemaps = require('gulp-sourcemaps')
-var runSequence = require('run-sequence')
+var runSequence = require('run-sequence').use(gulp);
 var config = require('./config.json')
 
 gulp.task('subapp-sass', function () {
@@ -37,9 +37,14 @@ gulp.task('watch-subapp-sass', function(){
 /**
  * Do this stuff then run the kit's default task
  */
-gulp.task('subapp', function(){
-	runSequence([
-		'subapp-sass',
-		'watch-subapp-sass'
-	])
+gulp.task('subapp-tasks', ['subapp-sass', 'watch-subapp-sass']);
+
+gulp.task('subapp', function (done) {
+  runSequence(
+		'generate-assets',
+	  'subapp-tasks',
+	  'watch',
+	  'server',
+		done
+	)
 })
