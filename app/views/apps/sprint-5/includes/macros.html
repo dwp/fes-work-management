@@ -1,3 +1,36 @@
 {% macro subAppMacroTest(test) %}
 	<p>subAppMacroTest {{ test | d('test var not passed') }}</p>
 {% endmacro %}
+
+{% macro pagination(config) %}
+	<div class="pager border">
+    <div class="pager-controls">
+      <ul class="pager-items">
+        <li>1</li>
+        <li><a href="#">2</a></li>
+      </ul>
+      <a class="pager-next" href="#">Next</a>
+    </div>
+    <div class="pager-summary">Showing 1 &ndash; 25 of 50 cases</div>   
+  </div>
+{% endmacro %}
+
+{% macro navigation(nav) %}
+	{% set theNavItems = currentApp.primaryNavLinks | d(nav.items) %}
+	{% if nav.items %}
+		<div class="c-navigation{% for modifier in nav.modifiers if nav.modifiers %} c-navigation--{{ modifier }}{% endfor %}">
+			<nav>
+				<ul class="c-navigation__list">
+					{% for item in theNavItems %}
+						{% set isActive = true if (item.text | slug) == (page.section | slug) else false %}
+						<li class="c-navigation__item {{ 'is--active' if isActive }}">
+							<a href="{{ item.href | d('#')}}" class="c-navigation__link {{ 'is--active' if isActive }}">{{ item.text }}</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</nav>
+		</div>
+	{% else %}
+		{{ 'There were no items passed to the macro to generate the navigation links' | log }}
+	{% endif %}
+{% endmacro %}

@@ -113,26 +113,37 @@ glob.sync(baseSubAppPath + appsDir + '/**/*-routes.js').forEach(function(current
 	
 	// push that to a collection of all the subapps
 	subApps.push(appData)
+	
+	let subRoutes = [appData.urlPaths.appRoot + ':page', appData.urlPaths.appRoot + 'views/:page*']
+	
+	subRoutes.forEach(function(path){
+		
+		router.use(path, function(req,res,next){
+			
+			appData.urlPaths.fileName = req.params.page
+			
+		  _.merge(res.locals, {
+				session: req.session,
+		    currentApp: appData,
+				postData: (req.body ? req.body : false)
+		  }, appData.config.overrides);
+		  
+			next();
+		})
+	})
+	
+	// no matter what the subapp, always add the following context data
+	// router.use([
+	// 	appData.urlPaths.appRoot + '*', 
+	// 	appData.urlPaths.appRoot + 'views/*'
+	// ], function(req, res, next){
+	// 
+	// 	
+	// });
 
 	// require the current subapp's routes file passing the overall app router
 	// and the subapp's data object
 	require(currentPath)(router, appData)
-	
-	// no matter what the subapp, always add the following context data
-	router.all([
-		appData.urlPaths.appRoot + '*', 
-		appData.urlPaths.appRoot + 'views/*'
-	], function(req, res, next){
-		
-	  _.merge(res.locals, {
-			session: req.session,
-	    currentApp: appData,
-			postData: (req.body ? req.body : false)
-	  }, appData.config.overrides);
-	  
-		next();
-		
-	});
 	
 	// if the user hits the root of the subapp's views, then redirect to the
 	// index page

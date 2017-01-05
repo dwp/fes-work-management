@@ -8,7 +8,9 @@
 	
 #}
 
-{% extends  "layouts/layout.html" %}
+{% import currentApp.filePaths.includesDir + "macros.html" as appMacro with context %}
+
+{% extends currentApp.filePaths.layoutsDir + "admin.html" %}
 
 {% block head %}
 	{# swap out the default 'application.css' for this sub-application specific file #}

@@ -1,3 +1,5 @@
+{% import "includes/macros/global.html" as macros %}
+
 {#
 	I've had to create my own 'admin' template based on govuk_template_unbranded
 	because there were not enough 'blocks' that allowed me to override aspects
@@ -35,7 +37,6 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:image" content="{{ asset_path }}images/opengraph-image.png?0.18.3">
-
 
     {% block head %}{% endblock %}
   </head>
