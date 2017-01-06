@@ -1,0 +1,36 @@
+{% set page = { 
+	section: 'Find a case' 
+} %} 
+
+{% extends currentApp.filePaths.layoutsDir + "default.html" %}
+
+{% block main_content %}
+	
+	<div class="c-focal-pane c-focal-pane--wide">
+		
+		<h1 class="heading-large">Find a case</h1>
+		
+		<form action="search" method="post">
+					
+			<div class="form-group">
+				<label class="form-label" for="search">To find another colleagues case, or one of your own, simply enter a search term. </label>
+			</div>
+			
+			<div class="c-search-pattern">
+				
+				<div class="c-search-pattern__field">
+					<input class="form-control form-control-1-1 c-search-pattern__input" id="search" type="text">
+				</div>
+				
+				<div class="c-search-pattern__action">
+					<input type="submit" value="Find" class="button c-search-pattern__button" id="submitButton" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+				</div>
+				
+			</div>
+			
+		</form>
+		
+	</div>
+	
+	
+{% endblock %}

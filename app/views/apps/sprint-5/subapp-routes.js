@@ -14,6 +14,7 @@ module.exports = function(router, config) {
   router.all([config.route.page, config.route.root + '**/*'], function(req,res,next){
 		
 		_.merge(res.locals,{
+			session: req.session,
 			currentApp: {
 				data: thisAppData
 			}
@@ -42,7 +43,7 @@ module.exports = function(router, config) {
 		}
 		
 		// redirect from login to this page
-    return res.redirect('case-list')
+    return res.redirect('work-list')
 		
 		next()
 	})

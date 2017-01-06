@@ -56,6 +56,7 @@ let getSubAppData = function(currentPath) {
 		// url paths constructed from the passed in subapp path
 		urlPaths: {
 			appRoot: appAbsolutePath,
+      root: appAbsolutePath  + 'views/',
 			assetsPath: appAbsolutePath + 'assets/',
 			scriptsPath: appAbsolutePath + 'assets/javascripts/',
 			stylesPath: appAbsolutePath + 'assets/sass/',
@@ -122,8 +123,18 @@ glob.sync(baseSubAppPath + appsDir + '/**/*-routes.js').forEach(function(current
 			
 			appData.urlPaths.fileName = req.params.page
 			
+		  if (!appData.session){
+		    appData.session = {};
+		  }
+
+		  for (var i in req.body){
+		    // any input where the name starts with _ is ignored
+		    if (i.indexOf("_") != 0){
+		      appData.session[i] = req.body[i];
+		    }
+		  }
+			
 		  _.merge(res.locals, {
-				session: req.session,
 		    currentApp: appData,
 				postData: (req.body ? req.body : false)
 		  }, appData.config.overrides);

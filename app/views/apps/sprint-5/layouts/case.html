@@ -1,0 +1,59 @@
+{% extends currentApp.filePaths.layoutsDir + "default.html" %}
+
+{% block main_content %}
+
+	<div class="l-case-section">
+		
+		<div class="l-case-section__navigation">
+			
+			{% block section_navigation %}
+				{{ 
+					appMacro.navigation({
+						rootURL: currentApp.urlPaths.root,
+						items: [
+							{ href: "#", text: "Case view" },
+							{ href: "#", text: "Documents" },
+							{ href: "#", text: "Linked cases (1)" },
+							{ href: "#", text: "Third parties (3)" },
+							{ href: "#", text: "Notes (1 new)" },
+							{ href: "#", text: "Case history" }
+						],
+						activeFlag: page.subsection,
+						modifiers: ['tabbed']
+					})
+				}}
+			{% endblock %}
+			
+		</div>
+		
+		<div class="grid-row">
+			
+			<div class="column-two-thirds">
+				
+				<div class="l-case-section__primary">
+										
+					{% block case_primary %}
+						<p>Case primary</p>
+					{% endblock %}
+					
+				</div>
+				
+			</div>
+		
+			<div class="column-one-third">
+				
+				<div class="l-case-section__secondary">
+					
+					{% block case_secondary %}
+						{{ appMacro.casedata() }}
+					{% endblock %}
+					
+				</div>
+				
+			</div>
+		
+		</div>
+		
+	</div>
+	
+{% endblock %}

@@ -59,7 +59,7 @@
 			<li>Sub-application configuration file is located: <span class="mono-inline">{{ currentApp.filePaths.configFile }}</span></li>
 			<li>'Sub application' specific data can be accessed in the templates with <span class="mono-inline">{% raw %}{{ currentApp }}{% endraw %}</span></li>
 			<li>Layouts are located: <span class="mono-inline">{{ currentApp.filePaths.layoutsDir }}</span></li>
-			<li>Session data can be accessed in the templates with <span class="mono-inline">{% raw %}{{ session }}{% endraw %}</span></li>
+			<li>Session data can be accessed in the templates with <span class="mono-inline">{% raw %}{{ currentApp.session }}{% endraw %}</span></li>
 			<li>'Post' data can be accessed in the templates with <span class="mono-inline">{% raw %}{{ postData }}{% endraw %}</span></li>
 		</ul>
 		

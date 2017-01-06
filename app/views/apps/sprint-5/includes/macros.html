@@ -22,9 +22,9 @@
 			<nav>
 				<ul class="c-navigation__list">
 					{% for item in theNavItems %}
-						{% set isActive = true if (item.text | slug) == (page.section | slug) else false %}
+						{% set isActive = true if (item.text | slug) == ((nav.activeFlag | d(page.section)) | slug) else false %}
 						<li class="c-navigation__item {{ 'is--active' if isActive }}">
-							<a href="{{ item.href | d('#')}}" class="c-navigation__link {{ 'is--active' if isActive }}">{{ item.text }}</a>
+							<a href="{{ nav.rootURL + item.href | d('#') }}" class="c-navigation__link {{ 'is--active' if isActive }}">{{ item.text }}</a>
 						</li>
 					{% endfor %}
 				</ul>
@@ -32,5 +32,30 @@
 		</div>
 	{% else %}
 		{{ 'There were no items passed to the macro to generate the navigation links' | log }}
+	{% endif %}
+{% endmacro %}
+
+{% macro casedata(data) %}
+  <dl class="meta-data">
+    <dt class="meta-data__key">Case number</dt>
+    <dd class="meta-data__val">3687111</dd>
+  	<dt class="meta-data__key">Case owner</dt>
+    <dd class="meta-data__val"><a href="owner-detail">Darren Silcox</a></dd>
+  	<dt class="meta-data__key">Case stage</dt>
+    <dd class="meta-data__val">Information gathering</dd>
+  	<dt class="meta-data__key">Activity</dt>
+    <dd class="meta-data__val">Book appoinment</dd>
+  	<dt class="meta-data__key">Due date</dt>
+    <dd class="meta-data__val">17 Nov 2016</dd>
+  </dl>
+	
+	{% if not data.hideActions %}
+	<div class="form-group action-buttons">
+		<h3 class="heading-small" style="margin: 0 0 20px 0;">Actions</h3>
+		<p><a href="book-interview" class="button button--block" title="Book">Book appointment</a></p>
+		<p><a href="reject" class="button button--block" title="Abandon">Abandon case</a></p>
+		<p><a href="reroute" class="button button--block" title="Re-route">Re-route case</a></p>
+		<p><a href="close" class="button button--block" title="Re-route">Close case</a></p>
+	</div>
 	{% endif %}
 {% endmacro %}
