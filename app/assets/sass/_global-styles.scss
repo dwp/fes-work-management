@@ -143,3 +143,17 @@ $alignments: left, right, center;
 .button--block {
   display: block;
 }
+
+.button-secondary {
+	@include button($grey-3);
+}
+
+.inline-button-text {
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 2;
+}
+
+.button + .inline-button-text {
+	margin-left: 10px;
+}
