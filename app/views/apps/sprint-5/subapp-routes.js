@@ -47,6 +47,23 @@ module.exports = function(router, config) {
 		
 		next()
 	})
+  
+	// grabs the subnavigation from data.js for a subsection if the key is Found
+	// within subnavs object and sets within the 'currentApp' object passed to 
+	// context
+	router.all(config.route.root + ':subsection/*', function(req,res,next){
+		
+		let thisSubSection = req.params.subsection
+		
+		if (thisSubSection in thisAppData.subnavs) {
+			_.merge(res.locals.currentApp, {
+				subnav: thisAppData.subnavs[thisSubSection]
+			})
+		}
+		
+		next()
+    
+	})
 
   return router
 	

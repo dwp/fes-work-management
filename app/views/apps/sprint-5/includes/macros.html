@@ -40,7 +40,7 @@
     <dt class="meta-data__key">Case number</dt>
     <dd class="meta-data__val">3687111</dd>
   	<dt class="meta-data__key">Case owner</dt>
-    <dd class="meta-data__val"><a href="owner-detail">Darren Silcox</a></dd>
+    <dd class="meta-data__val"><a href="owner-detail">Andy Houghton</a></dd>
   	<dt class="meta-data__key">Case stage</dt>
     <dd class="meta-data__val">Information gathering</dd>
   	<dt class="meta-data__key">Activity</dt>
@@ -52,10 +52,10 @@
 	{% if not data.hideActions %}
 	<div class="form-group action-buttons">
 		<h3 class="heading-small" style="margin: 0 0 20px 0;">Actions</h3>
-		<p><a href="book-interview" class="button button--block" title="Book">Book appointment</a></p>
-		<p><a href="reject" class="button button--block" title="Abandon">Abandon case</a></p>
-		<p><a href="reroute" class="button button--block" title="Re-route">Re-route case</a></p>
-		<p><a href="close" class="button button--block" title="Re-route">Close case</a></p>
+		<p><a href="{{ currentApp.urlPaths.root + 'activity/book-appointment' }}" class="button button--block" title="Book">Book appointment</a></p>
+		<p><a href="{{ currentApp.urlPaths.root + 'activity/reject-case' }}" class="button button--block" title="Abandon">Abandon case</a></p>
+		<p><a href="{{ currentApp.urlPaths.root + 'activity/reroute-case' }}" class="button button--block" title="Re-route">Re-route case</a></p>
+		<p><a href="{{ currentApp.urlPaths.root + 'activity/close-case' }}" class="button button--block" title="Re-route">Close case</a></p>
 	</div>
 	{% endif %}
 {% endmacro %}
