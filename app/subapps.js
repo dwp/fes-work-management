@@ -115,42 +115,64 @@ glob.sync(baseSubAppPath + appsDir + '/**/*-routes.js').forEach(function(current
 	// push that to a collection of all the subapps
 	subApps.push(appData)
 	
-	let subRoutes = [appData.urlPaths.appRoot + ':page', appData.urlPaths.appRoot + 'views/:page*']
-	
-	subRoutes.forEach(function(path){
-		
-		router.use(path, function(req,res,next){
-			
-			appData.urlPaths.fileName = req.params.page
-			
-		  if (!appData.session){
-		    appData.session = {};
-		  }
-
-		  for (var i in req.body){
-		    // any input where the name starts with _ is ignored
-		    if (i.indexOf("_") != 0){
-		      appData.session[i] = req.body[i];
-		    }
-		  }
-			
-		  _.merge(res.locals, {
-		    currentApp: appData,
-				postData: (req.body ? req.body : false)
-		  }, appData.config.overrides);
-		  
-			next();
-		})
-	})
-	
-	// no matter what the subapp, always add the following context data
-	// router.use([
-	// 	appData.urlPaths.appRoot + '*', 
-	// 	appData.urlPaths.appRoot + 'views/*'
-	// ], function(req, res, next){
+	// let subRoutes = [
+  //   appData.urlPaths.appRoot + ':page',
+  //   appData.urlPaths.appRoot + 'views/:page*',
+  //   appData.urlPaths.appRoot + 'views/**/:page*'
+  // ]
 	// 
+	// subRoutes.forEach(function(path){
 	// 	
-	// });
+	// 	router.all(path, function(req,res,next){
+	// 		
+	// 	  if (!appData.session){
+	// 	    appData.session = {};
+	// 	  }
+	// 
+	// 	  for (var i in req.body){
+	// 	    // any input where the name starts with _ is ignored
+	// 	    if (i.indexOf("_") != 0){
+	// 	      appData.session[i] = req.body[i];
+	// 	    }
+	// 	  }
+	// 		
+	// 	  _.merge(res.locals, {
+	// 	    currentApp: appData,
+	// 			postData: (req.body ? req.body : false)
+	// 	  }, appData.config.overrides);
+	// 	  
+	// 		next();
+  //     
+	// 	})
+	// })
+
+	let subRoutes = [
+    appData.urlPaths.appRoot + ':page',
+    appData.urlPaths.appRoot + 'views/:page*',
+    appData.urlPaths.appRoot + 'views/**/:page*'
+  ]
+		
+	router.all(subRoutes, function(req,res,next){
+		
+	  if (!appData.session){
+	    appData.session = {};
+	  }
+
+	  for (var i in req.body){
+	    // any input where the name starts with _ is ignored
+	    if (i.indexOf("_") != 0){
+	      appData.session[i] = req.body[i];
+	    }
+	  }
+		
+	  _.merge(res.locals, {
+	    currentApp: appData,
+			postData: (req.body ? req.body : false)
+	  }, appData.config.overrides);
+	  
+		next();
+    
+	})
 
 	// require the current subapp's routes file passing the overall app router
 	// and the subapp's data object

@@ -301,11 +301,6 @@
 		
 		@extend %contain-floats;
 		
-		// border: 1px solid $border-colour;
-		// border-right: 0;
-		// border-left: 0;
-		// padding: 1em 0;
-		
 		#{$root}__key,
 		#{$root}__val {
 			margin: 0 0 10px 0;
@@ -317,10 +312,7 @@
 		#{$root}__key {
 			float: left;
 			margin-right: 1em;
-		}
-		
-		#{$root}__val {
-
+			width: 25%;
 		}
 		
 	}

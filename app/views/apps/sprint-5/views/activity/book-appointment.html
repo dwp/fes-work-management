@@ -15,20 +15,28 @@
 	
 	<div class="column-one-third">
 		
+		{% set casenumber = '3687111' %}
+		{% set name = 'Mr Jason Farrowash' %}
+		{% set vulnerable = 'yes' %}
+		
 		<dl class="meta-data">
 			<dt class="meta-data__key">Case number</dt>
-			<dd class="meta-data__val">3687111</dd>
+			<dd class="meta-data__val">{{ casenumber }}</dd>
 			<dt class="meta-data__key">Customer</dt>
-			<dd class="meta-data__val">Mr Jason Farrowash</dd>
+			<dd class="meta-data__val">{{ name }}</dd>
 			<dt class="meta-data__key">Vulnerable</dt>
-			<dd class="meta-data__val">Yes</dd>
+			<dd class="meta-data__val">{{ vulnerable }}</dd>
 		</dl>
 		
 	</div>
 	
 	<div class="column-two-thirds">
 
-		<form class="" action="index.html" method="post">
+		<form action="{{ currentApp.urlPaths.root }}activity/preview-appointment" method="post">
+			
+			<input type="hidden" name="appointment-case-number" value="{{ casenumber }}">
+			<input type="hidden" name="appointment-name" value="{{ name }}">
+			<input type="hidden" name="appointment-vulnerable" value="{{ vulnerable }}">
 			
 			<div class="grid-row">
 				
@@ -81,7 +89,7 @@
 							<div class="column-one-quarter">
 								
 								<label class="form-label" for="select-month">Month</label>
-								<select class="form-control form-control-1-1" id="select-month"name="appointment-month">
+								<select class="form-control form-control-1-1" id="select-month" name="appointment-month">
 									<option value="---">Choose month</option>
 									<option>January</option>
 									<option>February</option>
@@ -231,7 +239,7 @@
 			</div>
 			
 			<div class="form-group">
-				<input type="submit" value="Book appointment" class="button">
+				<input type="submit" value="Preview appointment" class="button">
 			</div>
 			
 		</form>
