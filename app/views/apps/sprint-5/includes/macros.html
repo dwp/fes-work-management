@@ -52,7 +52,8 @@
 	{% if not data.hideActions %}
 	<div class="form-group action-buttons">
 		<h3 class="heading-small" style="margin: 0 0 20px 0;">Actions</h3>
-		<p><a href="{{ currentApp.urlPaths.root + 'activity/book-appointment' }}" class="button button--block" title="Book">Book appointment</a></p>
+		<p><a href="{{ currentApp.urlPaths.root + 'activity/appointment-book' }}" class="button button--block" title="Book">Book appointment</a></p>
+		<p><a href="{{ currentApp.urlPaths.root + 'activity/interview-start' }}" class="button button--block" title="Interview">Interview</a></p>
 		<p><a href="{{ currentApp.urlPaths.root + 'activity/reject-case' }}" class="button button--block" title="Abandon">Abandon case</a></p>
 		<p><a href="{{ currentApp.urlPaths.root + 'activity/reroute-case' }}" class="button button--block" title="Re-route">Re-route case</a></p>
 		<p><a href="{{ currentApp.urlPaths.root + 'activity/close-case' }}" class="button button--block" title="Re-route">Close case</a></p>

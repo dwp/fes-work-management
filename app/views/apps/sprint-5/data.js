@@ -18,7 +18,7 @@ module.exports = {
 		],
 		
 		activity: [
-			{ href: "activity/book-appointment", text: "Book appointment" },
+			{ href: "activity/appointment-book", text: "Book appointment" },
 			{ href: "activity/confirm-appointment", text: "Confirm appointment" }
 		]
 		

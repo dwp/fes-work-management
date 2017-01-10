@@ -64,6 +64,35 @@ module.exports = function(router, config) {
 		next()
     
 	})
+  
+	router.all(config.route.root + 'activity/:page*', function(req,res,next){
+		
+    let postData = (req.body ? req.body : false)
+		let page = req.params.page
+    
+		if(page == 'interview_route') {
+			
+	    if(postData.interview_type == "office") {
+				return res.redirect('interview-office')
+			} else {
+				return res.redirect('interview-phone')
+			}
+			
+		}
+		
+		if(page == 'interview-security-check') {
+			
+			if(postData['interview-paid-into'].toLowerCase() == 'hsbc') {
+				return res.redirect('interview-record')
+			} else {
+				return res.redirect('interview-security-notice')
+			}
+			
+		}
+		
+		next()
+    
+	})
 
   return router
 	

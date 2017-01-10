@@ -221,6 +221,12 @@
 // component styles
 // #############################################################################
 
+.inline-icon {
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
 .data-table {
 	thead {
 		tr:first-child {
