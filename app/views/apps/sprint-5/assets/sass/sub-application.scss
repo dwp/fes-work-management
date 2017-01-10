@@ -82,12 +82,19 @@
 }
 
 .l-subsection__navigation {
-	padding: 2em 0 2.5em;
+	padding: 2em 0 0;
 }
 
+.l-subsection__primary,
 .l-subsection__secondary {
-	border-top: $dwp-active-colour solid 10px;
-	padding-top: 15px;
+	margin-top: 40px;
+}
+
+.l-subsection-divider {
+	background: $dwp-active-colour;
+	height: 10px;
+	overflow: hidden;
+	margin-bottom: 15px;
 }
 
 // #############################################################################
@@ -220,6 +227,23 @@
 // #############################################################################
 // component styles
 // #############################################################################
+
+div.amount-field {
+	position: relative;
+	display: inline-block;
+	padding-left: 50px;
+}
+
+.form-input-denote {
+	position: absolute;
+	background-color: #dee0e2;
+	line-height: 2;
+	text-align: center;
+	z-index: 0;
+	left: 0;
+	top: 0;
+	width: 50px;
+}
 
 .inline-icon {
 	display: inline-block;

@@ -4,25 +4,26 @@
 
 	<div class="l-subsection">
 		
+		{% if not page.hide.section_nav %}			
 		<div class="l-subsection__navigation">
 			
 			{% block section_navigation %}
-				{{ 
-					appMacro.navigation({
-						rootURL: currentApp.urlPaths.root,
-						items: currentApp.subnav | d([
-							{ href: "/", text: "Subnav link" },
-							{ href: "/", text: "Subnav link" },
-							{ href: "/", text: "Subnav link" },
-							{ href: "/", text: "Subnav link" }
-						]),
-						activeFlag: page.subsection,
-						modifiers: ['tabbed']
-					})
-				}}
+			{{ 
+				appMacro.navigation({
+					rootURL: currentApp.urlPaths.root,
+					items: currentApp.subnav | d([
+					{ href: "/", text: "Subnav link" },
+					{ href: "/", text: "Subnav link" },
+					{ href: "/", text: "Subnav link" },
+					{ href: "/", text: "Subnav link" }
+					]),
+					activeFlag: page.subsection,
+					modifiers: ['tabbed']
+				})
+			}}
 			{% endblock %}
-			
 		</div>
+		{% endif %}
 		
 		{% block subsection_content %}
 		<div class="grid-row">

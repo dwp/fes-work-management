@@ -1,0 +1,89 @@
+{% set page = { 
+	section: 'Work list',
+	title: 'Case close',
+	hide: {
+		section_nav: true
+	}
+} %}
+
+{% extends currentApp.filePaths.layoutsDir + "admin-subsection.html" %}
+{# {% extends "layouts/layout.html" %} #}
+
+{% block subsection_primary %}
+
+<form class="" action="index.html" method="post">
+
+	<h1 class="heading-large mt-0">Close</h1>
+
+	<table class="data-table">
+		<thead>
+			<tr>
+				<th scope="col">Decision</th>
+				<th scope="col">Result</th>
+				<th scope="col">Date</th>
+			</tr>
+		</thead>
+		<tr>
+			<td>Claimant error</td>
+			<td>Undeclared capital</td>
+			<td>1 November 2016</td>
+		</tr>
+	</table>
+	
+	
+          <h3 class="heading-medium notop">Record outcome</h3>
+
+           <div class="form-group">
+              <label class="form-label" for="select-box">Select benefit MVA</label>
+                  <select class="form-control" id="select-box">
+                    <option>State pension </option>
+                    <option>JSA</option>
+                    <option>ESA</option>
+                    <option>Incapacity Benefit  </option>
+                    <option>Maternity Benefits </option>
+                    <option>IIDB</option>
+                    <option>DLA</option>
+                    <option>PIP</option>
+                    <option>Bereavement Benefits </option>
+                    <option>DLA</option>
+                    <option>Severe Disability Allowance </option>
+                  </select>
+            </div>
+
+            <div class="">
+              <fieldset class="inline">
+
+                <legend class="visually-hidden">Overpayment or underpayment</legend>
+
+                <label class="block-label" for="radio-inline-1" data-target="under">
+                  <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Underpayment">
+                  Underpayment
+                </label>
+                <label class="block-label" for="radio-inline-2" data-target="over">
+                  <input id="radio-inline-2" type="radio" name="radio-inline-group" value="Overpayment">
+                  Overpayment
+                </label>
+
+                <div class="panel panel-border-narrow js-hidden" id="under">
+									<div class="amount-field">
+	                  <span class="form-input-denote">-£</span>
+	                  <input class="form-control amount-field" id="under-amount" type="number">
+									</div>
+                </div>
+
+                <div class="panel panel-border-narrow js-hidden" id="over">
+									<div class="amount-field">										
+										<span class="form-input-denote">+£</span>
+										<input class="form-control amount-field" id="over-amount" type="number">
+									</div>
+                </div>
+
+
+              </fieldset>
+
+            </div>
+
+	
+</form>
+
+{% endblock %}
