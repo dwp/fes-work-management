@@ -14,6 +14,7 @@ module.exports = function(router, config) {
   router.all([config.route.page, config.route.root + '**/*'], function(req,res,next){
 		
 		_.merge(res.locals,{
+			postData: (req.body ? req.body : false),
 			session: req.session,
 			currentApp: {
 				data: thisAppData
