@@ -26,7 +26,7 @@
 		
 		<h2 class="heading-medium mt-0">Appointment details</h2>
 
-		<p>You are about to book a {{ currentApp.session['appointment-type'] }} appointment with {{ currentApp.session['appointment-name'] }}</p>
+		<p>Confirm the booking of a {{ currentApp.session['appointment-type'] }} appointment with:</p><p>{{ currentApp.session['appointment-name'] }}.</p>
 		
 		<dl class="meta-data meta-data--vertical">
 			<dt class="meta-data__key">Date</dt>
@@ -37,8 +37,21 @@
 			<dd class="meta-data__val">{{ currentApp.session['appointment-end'] }}</dd>
 		</dl>
 		
+		{% if currentApp.session['appointment-type'] == 'visit' %}
+			<h2 class="heading-small">Address</h2>
+			
+			<p>
+				{{ currentApp.session['appointment-address-line1'] }}<br> 
+				{{ currentApp.session['appointment-address-line2'] }}<br>
+				{{ currentApp.session['appointment-address-town'] }}<br>
+				{{ currentApp.session['appointment-address-postcode'] | upper }}
+			</p>
+			
+		{% endif %}
+		
 		<div class="form-group">
-			<input type="submit" name="submit" value="Book appointment" class="button">
+			<a href="{{ currentApp.urlPaths.root + 'case/' }}" class="button">Book appointment</a>
+			<a href="{{ currentApp.urlPaths.root + 'activity/book-appointment' }}" class="button button--link">Edit this appointment</a>
 		</div>
 
 	</div>

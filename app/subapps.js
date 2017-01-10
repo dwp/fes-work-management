@@ -147,6 +147,7 @@ glob.sync(baseSubAppPath + appsDir + '/**/*-routes.js').forEach(function(current
 	// })
 
 	let subRoutes = [
+    appData.urlPaths.appRoot,
     appData.urlPaths.appRoot + ':page',
     appData.urlPaths.appRoot + 'views/:page*',
     appData.urlPaths.appRoot + 'views/**/:page*'

@@ -50,38 +50,10 @@
 								
 								<label class="form-label" for="select-day">Day</label>
 								<select class="form-control form-control-1-1" id="select-day" name="appointment-day">
-									<option value="---">Choose day</option>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-									<option>6</option>
-									<option>7</option>
-									<option>8</option>
-									<option>9</option>
-									<option>10</option>
-									<option>11</option>
-									<option>12</option>
-									<option>13</option>
-									<option>14</option>
-									<option>15</option>
-									<option>16</option>
-									<option>17</option>
-									<option>18</option>
-									<option>19</option>
-									<option>20</option>
-									<option>21</option>
-									<option>22</option>
-									<option>23</option>
-									<option>24</option>
-									<option>25</option>
-									<option>26</option>
-									<option>27</option>
-									<option>28</option>
-									<option>29</option>
-									<option>30</option>
-									<option>31</option>
+									<option {{ 'selected="true"' if currentApp.session['appointment-day'] == 'choose' }} disabled="disabled" value="choose">Choose day</option>
+									{% for i in range(1, 31) %}
+										<option{{ ' selected="true"' if currentApp.session['appointment-day'] == i }}>{{ i }}</option>
+									{% endfor %}
 								</select>
 								
 							</div>
@@ -90,19 +62,24 @@
 								
 								<label class="form-label" for="select-month">Month</label>
 								<select class="form-control form-control-1-1" id="select-month" name="appointment-month">
-									<option value="---">Choose month</option>
-									<option>January</option>
-									<option>February</option>
-									<option>March</option>
-									<option>April</option>
-									<option>May</option>
-									<option>June</option>
-									<option>July</option>
-									<option>August</option>
-									<option>September</option>
-									<option>October</option>
-									<option>November</option>
-									<option>December</option>
+									{% set months = [
+											'January',
+											'February',
+											'March',
+											'April',
+											'May',
+											'June',
+											'July',
+											'August',
+											'September',
+											'October',
+											'November',
+											'December'
+										] %}
+										<option {{ 'selected="true"' if currentApp.session['appointment-month'] == 'choose' }} disabled="disabled" value="choose">Choose month</option>
+									{% for currentMonth in months %}
+										<option{{ ' selected="selected"' if currentApp.session['appointment-month'] == currentMonth }}>{{ currentMonth }}</option>
+									{% endfor %}
 								</select>
 								
 							</div>
@@ -111,7 +88,7 @@
 								
 								<label class="form-label" for="select-start-time">Start time</label>
 								<select class="form-control form-control-1-1" id="select-start-time" name="appointment-start">
-									<option value="---">Choose time</option>
+									<option value="">Choose time</option>
 									<option>8:00am</option>
 									<option>8:30am</option>
 									<option>9:00am</option>
@@ -144,7 +121,7 @@
 								
 								<label class="form-label" for="select-end-time">End time</label>
 								<select class="form-control form-control-1-1" id="select-end-time" name="appointment-end">
-									<option value="---">Choose time</option>
+									<option value="">Choose time</option>
 									<option>8:00am</option>
 									<option>8:30am</option>
 									<option>9:00am</option>

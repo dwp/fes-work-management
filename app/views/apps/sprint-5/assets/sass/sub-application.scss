@@ -319,6 +319,22 @@
 	
 }
 
+.button {
+	&--link {
+		background-color: transparent;
+		color: $link-colour;
+		border-colour: transparent;
+		&:link,
+		&:hover,
+		&:active,
+		&:visited {
+			background-color: transparent;
+			color: $link-colour;
+			box-shadow: none;
+		}
+	}
+}
+
 // #############################################################################
 // diary styles
 // #############################################################################

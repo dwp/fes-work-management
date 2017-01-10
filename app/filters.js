@@ -137,7 +137,7 @@ module.exports = function (env) {
    * @return {string}                   formatted string
    */
   filters.getUserNameFromEmail = function getUserNameFromEmail(email) {
-    return (email ? filters.toSentenceCase(email.split('@')[0].replace('.',' ')) : false);
+    return (email ? (filters.toSentenceCase(email.split('@')[0].replace('.',' '))) : 'Username');
   };
 
   /* ------------------------------------------------------------------
