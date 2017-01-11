@@ -11,10 +11,12 @@
 				
 			<p><a href="/" class="link-back">Back</a></p>
 				
-			<h1 class="heading-xlarge">
+			<h1 class="heading-xlarge" style="margin-bottom: 20px;">
 				{{ currentApp.title }}
 				<span class="heading-secondary">Details of this prototype</span>
 			</h1>
+			
+			<p><a href="{{ currentApp.startURL | d('views/') }}" class="button button-start">Launch {{ (currentApp.title) if currentApp.title }} prototype</a></p>
 
 			{% block description %}
 				<h2 class="heading-medium">Description</h2>
@@ -44,13 +46,11 @@
 					</div>
 				</div></p>
 			{% endblock %}
-			
-			<br>
-			
-			<p><a href="{{ currentApp.startURL | d('views/') }}" class="button button-start">Launch {{ (currentApp.title) if currentApp.title }} prototype</a></p>
 
 	    </div>
 	  </div>
+		
+		<hr>
 		
 		<h3 class="heading-medium">Technical details</h3>
 		

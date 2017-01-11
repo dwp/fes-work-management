@@ -169,3 +169,11 @@ $alignments: left, right, center;
 .button + .inline-button-text {
 	margin-left: 10px;
 }
+
+.list-bullet {
+  &--medium {
+    li {
+      font-size: 22px;
+    }
+  }
+}
