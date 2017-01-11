@@ -1,13 +1,13 @@
 {% set page = {
 	section: "diary",
-	subsection: "Book appointment"
+	subsection: "Rebook interview"
 } %}
 
 {% extends currentApp.filePaths.layoutsDir + "default.html" %}
 
 {% block main_content %}
 
-<h1 class="heading-large">Book an appointment</h1>
+<h1 class="heading-large">Rebook appointment</h1>
 
 <br>
 
@@ -29,6 +29,7 @@
 		</dl>
 		
 	</div>
+	
 	<div class="column-two-thirds">
 
 		<form action="{{ currentApp.urlPaths.root }}activity/appointment-preview" method="post">
