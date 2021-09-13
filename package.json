@@ -23,8 +23,8 @@
     "govuk-elements-sass": "2.2.1",
     "govuk_frontend_toolkit": "5.0.2",
     "govuk_template_jinja": "0.19.2",
-    "gulp": "^3.9.1",
-    "gulp-clean": "^0.3.2",
+    "gulp": "^4.0.0",
+    "gulp-clean": "^0.4.0",
     "gulp-mocha": "^3.0.1",
     "gulp-nodemon": "^2.1.0",
     "gulp-sass": "^2.3.2",
@@ -42,7 +42,7 @@
     "sentence-case": "^2.1.0",
     "serve-favicon": "2.3.0",
     "slug": "^0.9.1",
-    "standard": "^8.6.0",
+    "standard": "^11.0.0",
     "supertest": "^2.0.0",
     "sync-request": "^3.0.1"
   }
